@@ -6,6 +6,9 @@ use App\Entity\Document;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
+use App\Entity\Materiel;
 
 class DocumentFormType extends AbstractType
 {
@@ -15,7 +18,9 @@ class DocumentFormType extends AbstractType
             ->add('ref_doc')
             ->add('date_fin_valid')
             ->add('date_doc')
-            ->add('mat')
+            ->add('mat', EntityType::class, [
+                'class' => Materiel::class,
+                'choice_label' => 'ref_mat',])
         ;
     }
 

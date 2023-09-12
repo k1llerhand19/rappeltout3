@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Materiel{% endblock %}
+{% block title %}Document{% endblock %}
 
-{% form_theme form_materiel 'bootstrap_4_layout.html.twig' %}
+{% form_theme form_document 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
 <br>
@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             <div class="col-4"></div>
-            <div class="col-4"><h1>Materiel</h1></div>
+            <div class="col-4"><h1>Document</h1></div>
         </div>
     </div>
     <div class="container">
@@ -21,12 +21,15 @@
         <div class="row" >
             <div class="col-4" id="colonne-1"></div>
             <div class="col-4" id="colonne-1" >
-                {{form_start(form_materiel)}}
-                {{form_row(form_materiel.ref_mat, {'attr' : {'placeholder' : "Saisir la réference du materiel"}})}}
-                {{form_row(form_materiel.nom_mat, {'attr' : {'placeholder' : "Saisir le nom du materiel"}})}}
+                {{form_start(form_document)}}
+                {{form_row(form_document.mat)}}
+                {{form_row(form_document.ref_doc, {'attr' : {'placeholder' : "Saisir le nom du materiel"}})}}
+                {{form_row(form_document.date_fin_valid, {'attr' : {'placeholder' : "Saisir le nom du materiel"}})}}
+                {{form_row(form_document.date_doc, {'attr' : {'placeholder' : "Saisir le nom du materiel"}})}}
+                
                 
                 <button  type="submit" class="btn" id='btn'>Enregistrer</button>
-                {{form_end(form_materiel)}}
+                {{form_end(form_document)}}
             </div>
         </div>
     </div> 
