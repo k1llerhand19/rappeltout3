@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MaterielController extends AbstractController
 {
-    #[Route('/materiel/ajout', name: 'materiel.add')]
+    #[Route('/admin/materiel/ajout', name: 'materiel.add')]
     public function AjouterActuRequest(Request $request,  EntityManagerInterface $manager): Response
     {   $materiel = new Materiel();
         $form_materiel = $this->createForm(MaterielFormType::class,$materiel);

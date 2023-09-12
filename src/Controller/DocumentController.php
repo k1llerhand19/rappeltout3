@@ -24,7 +24,7 @@ class DocumentController extends AbstractController
         ]);
     }
 
-    #[Route('/document/ajout', name: 'document.add')]
+    #[Route('/admin/document/ajout', name: 'document.add')]
     public function AjouterActuRequest(Request $request,  EntityManagerInterface $manager): Response
     {   $document = new Document();
         $form_document = $this->createForm(DocumentFormType::class,$document);

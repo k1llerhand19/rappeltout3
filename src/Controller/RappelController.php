@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RappelController extends AbstractController
 {
-    #[Route('/', name: 'app_rappel')]
+    #[Route('/rappel', name: 'app_rappel')]
     public function index(): Response
     {
         return $this->render('rappel/index.html.twig', [
