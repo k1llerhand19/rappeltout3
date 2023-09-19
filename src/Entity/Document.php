@@ -27,6 +27,9 @@ class Document
     #[ORM\JoinColumn(nullable: false)]
     private ?Materiel $mat = null;
 
+    #[ORM\Column(length: 50)]
+    private ?string $Titre = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +79,18 @@ class Document
     public function setMat(?Materiel $mat): static
     {
         $this->mat = $mat;
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->Titre;
+    }
+
+    public function setTitre(string $Titre): static
+    {
+        $this->Titre = $Titre;
 
         return $this;
     }

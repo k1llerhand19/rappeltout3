@@ -21,10 +21,12 @@ class DocumentFormType extends AbstractType
             ->add('ref_doc')
             ->add('date_fin_valid')
             ->add('date_doc')
+            
             ->add('mat', EntityType::class, [
+                'label' => 'Matériel',
                 'class' => Materiel::class,
                 'choice_label' => 'ref_mat',])
-            ->add("PDF", FileType::class, [
+            ->add("titre", FileType::class, [
                 'label' => 'fichier PDF',
     
                 // unmapped means that this field is not associated to any entity property

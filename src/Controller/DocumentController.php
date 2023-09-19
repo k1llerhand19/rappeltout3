@@ -12,6 +12,7 @@ use App\Form\DocumentFormType;
 
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -35,7 +36,7 @@ class DocumentController extends AbstractController
     
         if( $form_document->isSubmitted() && $form_document->isValid()){
 
-            $brochureFile = $form_document->get('PDF')->getData();
+            $brochureFile = $form_document->get('titre')->getData();
 
             // this condition is needed because the 'brochure' field is not required
             // so the PDF file must be processed only when a file is uploaded
@@ -54,6 +55,10 @@ class DocumentController extends AbstractController
                 } catch (FileException $e) {
                     // ... handle exception if something happens during file upload
                 }
+                
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $document->setTitre($newFilename);
             }
             
             $manager->persist($document);
@@ -66,5 +71,30 @@ class DocumentController extends AbstractController
         return $this->render('document/index.html.twig', [
             'form_document' => $form_document->createView()
         ]);
+    }
+
+    #[Route('/admin/rappel', name: 'document.show')]
+    public function findByDate(ManagerRegistry $registry): Response
+
+    {       $currentDate = new \DateTime();
+            $currentDate2 = new \DateTime(); 
+        
+            $currentDate->add(new \DateInterval('P4D'));
+            $currentDate2->sub(new \DateInterval('P4D'));
+            //dd($currentDate);
+
+            $doc = $registry->getManager()->getRepository(Document::class)->createQueryBuilder('d')
+            ->select('d.id, d.Titre, d.date_fin_valid, m.ref_mat as ref_mat')
+            ->join('d.mat', 'm')
+            ->where('d.date_fin_valid <= :currentDate and d.date_fin_valid >= :currentDate2') // Ajout de la clause WHERE
+            ->setParameter('currentDate', $currentDate)
+            ->setParameter('currentDate2', $currentDate2) // Paramètre pour comparer avec la date actuelle
+             // ->orderBy('o.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+            //dd($doc);
+            return $this->render('rappel/index.html.twig', [
+                'showdoc' => $doc
+            ]);
     }
 }
