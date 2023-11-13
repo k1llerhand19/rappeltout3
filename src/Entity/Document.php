@@ -27,7 +27,7 @@ class Document
     #[ORM\JoinColumn(nullable: false)]
     private ?Materiel $mat = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 200)]
     private ?string $Titre = null;
 
     public function getId(): ?int
