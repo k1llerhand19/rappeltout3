@@ -3,19 +3,6 @@
 {% block title %}Hello RappelController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/kille/rappeltout/src/Controller/RappelController.php'|file_link(0) }}">src/Controller/RappelController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/kille/rappeltout/templates/rappel/index.html.twig'|file_link(0) }}">templates/rappel/index.html.twig</a></code></li>
-    </ul>
     {% for date in showdoc %}
         <p> Titre du PDF: {{ date.Titre}}
         date de fin de validation : {{ date.date_fin_valid|date('d/m/Y') }}</p>

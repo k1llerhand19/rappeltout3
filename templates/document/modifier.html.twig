@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Document{% endblock %}
+
+{% form_theme form_document 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<br>
+<div id="text">
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4"><h1>Document</h1></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" >
+            <div class="col-4" id="colonne-1"></div>
+            <div class="col 4" id="colonne-1"><br><h3>Modifier :</h3></div>
+        </div>
+        <div class="row" >
+            <div class="col-4" id="colonne-1"></div>
+            <div class="col-4" id="colonne-1" >
+                {{form_start(form_document)}}
+                <button  type="submit" class="btn" id='btn'>Modifier</button>
+                {{form_end(form_document)}}
+            </div>
+        </div>
+    </div> 
+</div>
+{% endblock %}

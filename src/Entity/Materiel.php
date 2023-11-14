@@ -16,10 +16,10 @@ class Materiel
     private ?int $id = null;
 
     #[ORM\Column(length: 25)]
-    private ?string $ref_mat = null;
+    public ?string $ref_mat = null;
 
     #[ORM\Column(length: 25)]
-    private ?string $nom_mat = null;
+    public ?string $nom_mat = null;
 
     #[ORM\OneToMany(mappedBy: 'mat', targetEntity: Document::class)]
     private Collection $id_mat;

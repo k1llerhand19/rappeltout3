@@ -15,10 +15,10 @@ class Document
     private ?int $id = null;
 
     #[ORM\Column(length: 25)]
-    private ?string $ref_doc = null;
+    public ?string $ref_doc = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_fin_valid = null;
+    public ?\DateTimeInterface $date_fin_valid = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_doc = null;

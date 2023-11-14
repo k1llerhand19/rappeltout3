@@ -9,14 +9,26 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{path('app_rappel')}}">Rappel <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{path('materiel.add')}}">Ajout Matériel</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Matériel
+                        </a>
+                        <div class="dropdown-menu" id="menu-saison-btn" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{path('app_materiel')}}">Afficher</a>
+                            <a class="dropdown-item" href="{{path('materiel.add')}}">Ajout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Document
+                        </a>
+                        <div class="dropdown-menu" id="menu-saison-btn" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{path('app_document')}}">Afficher</a>
+                            <a class="dropdown-item" href="{{path('document.add')}}">Ajout</a>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{path('document.add')}}">Ajout Document</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{path('app_mailer')}}">Mail</a>
+                        <a class="nav-link" href="{{path('document.show')}}">Mail</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{path('app_logout')}}">Déconnexion</a>
