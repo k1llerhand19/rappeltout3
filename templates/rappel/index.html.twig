@@ -1,12 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RappelController!{% endblock %}
+{% block title %}Rappel Tout{% endblock %}
 
 {% block body %}
-    {% for date in showdoc %}
-        <p> Titre du PDF: {{ date.Titre}}
-        date de fin de validation : {{ date.date_fin_valid|date('d/m/Y') }}</p>
-    {% endfor %}
+<br>
+    <div id="Body">
+        <div class="container">
+            <center>
+                <h1 id="titre">Rappel Tout</h1><br>
+            </center>
+        </div>
+        <center>
+        <div class="col-lg-10">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr class="align-middle text-center">
+                                <th class="text-nowrap" id="slide">Nom du PDF</th>
+                                <th class="text-nowrap" id="slide">Date de fin de validation</th>
+                            </tr>            
+                            {% for date in showdoc %}
+                                <tr class="align-middle text-center">
+                                    <td class="text-nowrap">
+                                        <a href="#" target="_blank">
+                                            {{ date.Titre }}
+                                        </a>
+                                    </td>
+                                    <td class="text-nowrap" id="slide">{{ date.date_fin_valid|date('d/m/Y')}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>                            
+                    </table>
+                </div>
+            </div>
+        </div>
+        </center>
+    </div>
+
 
 </div>
 {% endblock %}

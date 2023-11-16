@@ -30,7 +30,9 @@ class DocumentController extends AbstractController
             'controller_name' => 'DocumentController',
             'showDoc' => $showDoc,
         ]);
+
     }
+
 
     #[Route('/admin/document/ajout', name: 'document.add')]
     public function AjouterDocRequest(Request $request,  EntityManagerInterface $manager, SluggerInterface $slugger): Response
