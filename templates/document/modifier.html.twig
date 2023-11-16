@@ -2,7 +2,7 @@
 
 {% block title %}Document{% endblock %}
 
-{% form_theme form_document 'bootstrap_4_layout.html.twig' %}
+{% form_theme form_doc 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
 <br>
@@ -21,9 +21,9 @@
         <div class="row" >
             <div class="col-4" id="colonne-1"></div>
             <div class="col-4" id="colonne-1" >
-                {{form_start(form_document)}}
+                {{form_start(form_doc)}}
                 <button  type="submit" class="btn" id='btn'>Modifier</button>
-                {{form_end(form_document)}}
+                {{form_end(form_doc)}}
             </div>
         </div>
     </div> 

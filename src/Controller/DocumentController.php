@@ -89,4 +89,52 @@ class DocumentController extends AbstractController
                 'showdoc' => $doc
             ]);
     }
+
+    #[Route('/admin/document/sup/{id}', name: 'document.delete', methods: ['GET', 'POST'])]
+    public function delete(Document $doc, EntityManagerInterface $entityManager, Request $request): Response
+    {
+
+            $entityManager->remove($doc);
+            $entityManager->flush();
+
+
+        return $this->redirectToRoute('app_document');
+    }
+
+    #[Route('/admin/document/{id}', name: 'document.edit', methods: ['GET', 'POST'])]
+    public function Modifier(Document $doc, Request $request, EntityManagerInterface $manager): Response
+    {          
+        $form_doc = $this->createForm(DocumentFormType::class, $doc);
+        $form_doc->handleRequest($request);
+
+        if ($form_doc->isSubmitted() && $form_doc->isValid()) {
+
+            $brochureFile = $form_doc->get('titre')->getData();
+            if ($brochureFile) {
+                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
+
+                try {
+                    $brochureFile->move(
+                        $this->getParameter('brochures_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+
+                $document->setTitre($newFilename);
+            }
+            $manager->persist($doc);
+            $manager->flush();
+
+            // Rediriger vers une page de confirmation ou une autre action
+            return $this->redirectToRoute('app_document',[
+            ]);
+        }
+
+        return $this->render('document/modifier.html.twig', [
+            'form_doc' => $form_doc->createView(),
+        ]);
+    }
 }

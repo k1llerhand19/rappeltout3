@@ -45,7 +45,7 @@ class MaterielController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/materiel/{id}', name: 'materiel.delete', methods: ['DELETE'])]
+    #[Route('/admin/materiel/sup/{id}', name: 'materiel.delete', methods: ['GET', 'POST'])]
     public function delete(Materiel $mat, EntityManagerInterface $entityManager, Request $request): Response
     {
         if($this->isCsrfTokenValid('delete'.$mat->getId(), $request->get('_token')))

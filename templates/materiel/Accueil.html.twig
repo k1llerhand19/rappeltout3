@@ -7,7 +7,7 @@
     <div id="Body">
         <div class="container">
             <center>
-                <h1 id="titre">Documents</h1><br>
+                <h1 id="titre">Materiel</h1><br>
             </center>
         </div>
         <center>
@@ -26,8 +26,11 @@
                                     <td class="text-nowrap" >{{Mat.ref_mat}}</td>
                                     <td class="text-nowrap" id="slide">{{ Mat.nom_mat }}</td>
                                     <td> 
-                                        <a id="text" href="{{ path('materiel.edit', {id: Mat.id}) }}">Modifier</a>
-                                        <form method="post" action="{{ path('materiel.delete', {id: Mat.id}) }}" style="display: inline-block">
+                                        <form method="post" action="{{ path('materiel.edit', {id: Mat.id}) }}" style="display: inline-block">
+                                            <input type="hidden" name="_method" value="edit">
+                                            <button class="btn btn-success"> Modifier<span class="bi bi-trash-fill"></span></button>
+                                        </form>
+                                        <form method="post" action="{{ path('materiel.delete', {id: Mat.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer le document : \'{{ Mat.ref_mat }}\' ?')">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ Mat.id) }}">
                                             <button class="btn btn-danger"> supprimer<span class="bi bi-trash-fill"></span></button>
