@@ -17,15 +17,20 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr class="align-middle text-center">
+                                <th class="text-nowrap" id="slide">Nom du Materiel</th>
+                                <th class="text-nowrap" id="slide">Référence du Materiel</th>
                                 <th class="text-nowrap" id="slide">Nom du PDF</th>
                                 <th class="text-nowrap" id="slide">Date de fin de validation</th>
                             </tr>            
                             {% for date in showdoc %}
                                 <tr class="align-middle text-center">
+                                    <td class="text-nowrap" id="slide">{{ date.nom_mat}}</td>
+                                    <td class="text-nowrap" id="slide">{{ date.ref_mat}}</td>
                                     <td class="text-nowrap">         
                                         <a href="{{asset('assets/PDF/' ~ date.Titre)}}"target="blank">{{ date.Titre }}</a> 
                                     </td>
                                     <td class="text-nowrap" id="slide">{{ date.date_fin_valid|date('d/m/Y')}}</td>
+                                    
                                 </tr>
                             {% endfor %}
                         </tbody>                            

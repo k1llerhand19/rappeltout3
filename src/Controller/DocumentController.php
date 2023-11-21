@@ -78,13 +78,14 @@ class DocumentController extends AbstractController
             $currentDate2->sub(new \DateInterval('P4D'));
 
             $doc = $registry->getManager()->getRepository(Document::class)->createQueryBuilder('d')
-            ->select('d.id, d.Titre, d.date_fin_valid, m.ref_mat as ref_mat')
+            ->select('d.id, d.Titre, d.date_fin_valid, m.ref_mat as ref_mat, m.nom_mat as nom_mat')
             ->join('d.mat', 'm')
             ->where('d.date_fin_valid <= :currentDate and d.date_fin_valid >= :currentDate2') // Ajout de la clause WHERE
             ->setParameter('currentDate', $currentDate)
             ->setParameter('currentDate2', $currentDate2) // Paramètre pour comparer avec la date actuelle
             ->getQuery()
             ->getResult();
+            
             return $this->render('rappel/index.html.twig', [
                 'showdoc' => $doc
             ]);
